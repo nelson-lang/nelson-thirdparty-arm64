@@ -1,7 +1,4 @@
-set PLATFORM_NELSON=woa64
-set BOOST_NELSON=x64-1_82
-set VC_VERSION=vc143
-set QTDIR=%QTDIR64%
+set PLATFORM_NELSON=ARM64
 set NELSON_DIR=..\nelson
 
 rem remove qt debug symbols
