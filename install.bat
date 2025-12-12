@@ -1,7 +1,7 @@
 set PLATFORM_NELSON=ARM64
 set BOOST_NELSON=a64-1_89
 set VC_VERSION=vc145
-set QTDIR=%QTDIR64%
+set QTDIR=%QTDIRARM64%
 set NELSON_DIR=..\nelson
 
 rem release mode
@@ -46,29 +46,19 @@ rem CMake
 xcopy /E /Y .\cmake %NELSON_DIR%\tools\cmake\
 
 rem QT dependencies
-copy %QTDIR%\bin\qhelpgenerator.exe %NELSON_DIR%\bin\%PLATFORM_NELSON%\qhelpgenerator.exe
-copy %QTDIR%\bin\qcollectiongenerator.exe %NELSON_DIR%\bin\%PLATFORM_NELSON%\qcollectiongenerator.exe
-copy %QTDIR%\bin\assistant.exe %NELSON_DIR%\bin\%PLATFORM_NELSON%\assistant.exe
+rem QT 6 required
+copy %QTDIR%\bin\Qt?QuickLayouts.dll %NELSON_DIR%\bin\%PLATFORM_NELSON%\
+rem QT 6.7 required
+copy %QTDIR%\bin\Qt?QuickControls2Basic?.dll %NELSON_DIR%\bin\%PLATFORM_NELSON%\
+copy %QTDIR%\bin\Qt?QuickControls2Fusion?.dll %NELSON_DIR%\bin\%PLATFORM_NELSON%\
+copy %QTDIR%\bin\Qt?QuickControls2FusionStyleImpl.dll %NELSON_DIR%\bin\%PLATFORM_NELSON%\
+copy %QTDIR%\bin\Qt?QuickControls2FusionStyleImpld.dll %NELSON_DIR%\bin\%PLATFORM_NELSON%\
+rem QT 6.8 required
+copy %QTDIR%\bin\Qt?QmlMetad.dll %NELSON_DIR%\bin\%PLATFORM_NELSON%\
+copy %QTDIR%\bin\Qt?QmlMeta.dll %NELSON_DIR%\bin\%PLATFORM_NELSON%\
 copy %QTDIR%\bin\icudt5?.dll    %NELSON_DIR%\bin\%PLATFORM_NELSON%\icudt5?.dll
 copy %QTDIR%\bin\icuin5?.dll    %NELSON_DIR%\bin\%PLATFORM_NELSON%\icuin5?.dll
 copy %QTDIR%\bin\icuuc5?.dll    %NELSON_DIR%\bin\%PLATFORM_NELSON%\icuuc5?.dll
-xcopy /E /Y %QTDIR%\plugins %NELSON_DIR%\bin\%PLATFORM_NELSON%\plugins\
-rmdir %NELSON_DIR%\bin\%PLATFORM_NELSON%\plugins\bearer /s /Q
-rmdir %NELSON_DIR%\bin\%PLATFORM_NELSON%\plugins\designer /s /Q
-rmdir %NELSON_DIR%\bin\%PLATFORM_NELSON%\plugins\qmltooling /s /Q
-rmdir %NELSON_DIR%\bin\%PLATFORM_NELSON%\plugins\position /s /Q
-rmdir %NELSON_DIR%\bin\%PLATFORM_NELSON%\plugins\playlistformats /s /Q
-rmdir %NELSON_DIR%\bin\%PLATFORM_NELSON%\plugins\mediaservice /s /Q
-rmdir %NELSON_DIR%\bin\%PLATFORM_NELSON%\plugins\geoservices /s /Q
-rmdir %NELSON_DIR%\bin\%PLATFORM_NELSON%\plugins\audio /s /Q
-rmdir %NELSON_DIR%\bin\%PLATFORM_NELSON%\plugins\generic /s /Q
-xcopy /E /Y %QTDIR%\qml %NELSON_DIR%\bin\%PLATFORM_NELSON%\qml\
-copy %QTDIR%\qml\QtCanvas3D\qtcanvas3d.dll  %NELSON_DIR%\bin\%PLATFORM_NELSON%\qml\QtCanvas3D\
-rmdir %NELSON_DIR%\bin\%PLATFORM_NELSON%\qml\QtBluetooth /s /Q
-rmdir %NELSON_DIR%\bin\%PLATFORM_NELSON%\qml\QtLocation /s /Q
-rmdir %NELSON_DIR%\bin\%PLATFORM_NELSON%\qml\QtNfc /s /Q
-rmdir %NELSON_DIR%\bin\%PLATFORM_NELSON%\qml\QtPositioning /s /Q
-rmdir %NELSON_DIR%\bin\%PLATFORM_NELSON%\qml\QtTest /s /Q
 copy %QTDIR%\bin\d3dcompiler_*.dll %NELSON_DIR%\bin\%PLATFORM_NELSON%\
 copy %QTDIR%\bin\libEGL.dll  %NELSON_DIR%\bin\%PLATFORM_NELSON%\
 copy %QTDIR%\bin\libGLESv2.dll %NELSON_DIR%\bin\%PLATFORM_NELSON%\
@@ -121,18 +111,23 @@ copy %QTDIR%\bin\Qt?QuickControls2WindowsStyleImpld.dll %NELSON_DIR%\bin\%PLATFO
 copy %QTDIR%\bin\Qt?QuickEffects.dll %NELSON_DIR%\bin\%PLATFORM_NELSON%\
 copy %QTDIR%\bin\Qt?QuickEffectsd.dll %NELSON_DIR%\bin\%PLATFORM_NELSON%\
 
-rem QT 6 required
-copy %QTDIR%\bin\Qt?QuickLayouts.dll %NELSON_DIR%\bin\%PLATFORM_NELSON%\
-
-rem QT 6.7 required
-copy %QTDIR%\bin\Qt?QuickControls2Basic?.dll %NELSON_DIR%\bin\%PLATFORM_NELSON%\
-copy %QTDIR%\bin\Qt?QuickControls2Fusion?.dll %NELSON_DIR%\bin\%PLATFORM_NELSON%\
-copy %QTDIR%\bin\Qt?QuickControls2FusionStyleImpl.dll %NELSON_DIR%\bin\%PLATFORM_NELSON%\
-copy %QTDIR%\bin\Qt?QuickControls2FusionStyleImpld.dll %NELSON_DIR%\bin\%PLATFORM_NELSON%\
-
-rem QT 6.8 required
-copy %QTDIR%\bin\Qt?QmlMetad.dll %NELSON_DIR%\bin\%PLATFORM_NELSON%\
-copy %QTDIR%\bin\Qt?QmlMeta.dll %NELSON_DIR%\bin\%PLATFORM_NELSON%\
+xcopy /E /Y %QTDIR%\plugins %NELSON_DIR%\bin\%PLATFORM_NELSON%\plugins\
+rmdir %NELSON_DIR%\bin\%PLATFORM_NELSON%\plugins\bearer /s /Q
+rmdir %NELSON_DIR%\bin\%PLATFORM_NELSON%\plugins\designer /s /Q
+rmdir %NELSON_DIR%\bin\%PLATFORM_NELSON%\plugins\qmltooling /s /Q
+rmdir %NELSON_DIR%\bin\%PLATFORM_NELSON%\plugins\position /s /Q
+rmdir %NELSON_DIR%\bin\%PLATFORM_NELSON%\plugins\playlistformats /s /Q
+rmdir %NELSON_DIR%\bin\%PLATFORM_NELSON%\plugins\mediaservice /s /Q
+rmdir %NELSON_DIR%\bin\%PLATFORM_NELSON%\plugins\geoservices /s /Q
+rmdir %NELSON_DIR%\bin\%PLATFORM_NELSON%\plugins\audio /s /Q
+rmdir %NELSON_DIR%\bin\%PLATFORM_NELSON%\plugins\generic /s /Q
+xcopy /E /Y %QTDIR%\qml %NELSON_DIR%\bin\%PLATFORM_NELSON%\qml\
+copy %QTDIR%\qml\QtCanvas3D\qtcanvas3d.dll  %NELSON_DIR%\bin\%PLATFORM_NELSON%\qml\QtCanvas3D\
+rmdir %NELSON_DIR%\bin\%PLATFORM_NELSON%\qml\QtBluetooth /s /Q
+rmdir %NELSON_DIR%\bin\%PLATFORM_NELSON%\qml\QtLocation /s /Q
+rmdir %NELSON_DIR%\bin\%PLATFORM_NELSON%\qml\QtNfc /s /Q
+rmdir %NELSON_DIR%\bin\%PLATFORM_NELSON%\qml\QtPositioning /s /Q
+rmdir %NELSON_DIR%\bin\%PLATFORM_NELSON%\qml\QtTest /s /Q
 
 rem vc runtime
 copy .\vc14.5-runtime\*.dll %NELSON_DIR%\bin\%PLATFORM_NELSON%\*.dll
